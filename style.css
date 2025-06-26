@@ -1,0 +1,145 @@
+*{
+  box-sizing: border-box;
+
+}
+.parent{
+display: flex;
+height: 400px;
+width: 100%;
+flex-direction: row;
+
+}
+.d1{
+width: 300px;
+height: 300px;
+background-color: rgb(140, 184, 180);
+margin: 100px 100px;
+border-radius: 50%;
+text-align: center;
+color: white;
+position: relative;
+}
+
+@property --angle{
+syntax: "<angle>";
+initial-value: 0deg;
+inherits: false;
+
+
+}
+
+.d1::after,.d1::before{
+  content: '';
+--angle:0deg;  
+height: 300px;
+width: 300px;
+position: absolute;
+padding: 4px;
+z-index: -1;
+top: 50%;
+left: 50%;
+translate: -50% -50%;
+background-color: black;
+background-image: conic-gradient(from var(--angle), red,green,yellow,blue,pink,indianred,purple );
+animation: spin 3s linear infinite;
+border-radius: 50%;
+}
+.d1::before{
+filter: blur(1.9rem);
+opacity: 0.9;
+
+
+}
+@keyframes spin{
+  from{
+--angle:0deg;
+
+  }
+  to{
+--angle:360deg;
+
+  }
+}
+
+
+.container{
+width: 500px;
+background-color: rgb(203, 222, 233);
+padding: 25px;
+margin-top: 100px;
+border-radius: 20px;
+}
+.container li{
+list-style-type: none;
+margin: 50px 0;
+text-transform: uppercase;
+position: relative;
+
+}
+
+.container li::before{
+content:'';
+height: 25px;
+background-color: rgb(184, 193, 193);
+width: 400px;
+position: absolute;
+top: calc(100% + 10px);
+border-radius: 20px;
+}
+.container li::after{
+content:'';
+height: 25px;
+background-color: rgb(18, 196, 196);
+width: 0px;
+position: absolute;
+top: calc(100% + 10px);
+left: 0;
+border-radius: 20px;
+animation: 3s 2s linear forwards;
+}
+
+.container li.html::after{
+animation-name: html;
+
+}
+
+@keyframes html{
+to{
+width: 320px;
+background-color: rgb(255, 251, 0);
+
+}
+
+}
+
+.container li.css::after{
+animation-name: css;
+
+}
+
+@keyframes css{
+to{
+width: 250px;
+background-color: rgb(255, 162, 0);
+
+}
+
+}
+.container li.js::after{
+animation-name: js;
+
+}
+
+@keyframes js{
+to{
+width: 200px;
+background-color: rgb(255, 0, 191);
+
+}
+
+}
+
+.container:hover{
+box-shadow: 2px 8px 4px 3px rgb(48, 101, 119);
+
+}
